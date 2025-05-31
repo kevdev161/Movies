@@ -19,9 +19,11 @@ struct MovieListCard: View {
                         .frame(width: 80, height: 120)
                         .cornerRadius(8)
                 } else if phase.error != nil {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundColor(.red)
+                    Image("PosterPlaceholder")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: 80, height: 120)
+                        .clipped()
                 } else {
                     ProgressView()
                         .frame(width: 80, height: 120)
