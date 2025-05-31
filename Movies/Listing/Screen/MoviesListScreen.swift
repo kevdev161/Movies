@@ -18,6 +18,7 @@ struct MoviesListScreen: View {
                     Text("Movies")
                         .font(.title)
                         .fontWeight(.bold)
+                        .foregroundStyle(.textPrimary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     NavigationLink {
                         FavoritesScreen()
@@ -40,6 +41,7 @@ struct MoviesListScreen: View {
                             Text("Popular movies")
                                 .font(.title3)
                                 .fontWeight(.semibold)
+                                .foregroundStyle(.textPrimary)
                             ForEach(viewModel.popularMovies.indices, id: \.self) { index in
                                 let movie = viewModel.popularMovies[index]
                                 MovieListCard(movie: movie)
@@ -73,6 +75,7 @@ struct MoviesListScreen: View {
                 }
             }.padding(.horizontal, 20)
                 .padding(.vertical, 32)
+                .background(.backgroundPrimary)
                 .scrollDismissesKeyboard(.immediately)
                 .ignoresSafeArea(.all, edges: .bottom)
         }

@@ -27,6 +27,7 @@ struct FavoritesScreen: View {
                     }
                 }
             }.padding(.horizontal, 20)
+                .background(Color.backgroundPrimary)
                 .navigationTitle("Favorites")
                 .navigationBarTitleDisplayMode(.automatic)
         }

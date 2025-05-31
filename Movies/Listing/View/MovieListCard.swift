@@ -38,30 +38,31 @@ struct MovieListCard: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(movie.title)
                         .font(.headline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.textPrimary)
                         .lineLimit(1)
                         .multilineTextAlignment(.leading)
                     Text(movie.year)
                         .font(.subheadline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.textPrimary)
                     HStack(spacing: 4) {
                         Image(systemName: "movieclapper")
                             .resizable()
                             .frame(width: 12, height: 12)
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.iconPrimary)
                         Text(movie.type.capitalized)
                             .font(.footnote)
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.textPrimary)
                     }.padding(.vertical, 8)
                 }.frame(maxWidth: .infinity, alignment: .leading)
                     .padding(16)
             }.frame(minHeight: 120)
-
+                .background(.backgroundSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .overlay {
                     RoundedRectangle(cornerRadius: 8)
                         .strokeBorder(Color.gray, lineWidth: 0.5)
                 }
+
                 .overlay(alignment: .top) {
                     Button {
                         withAnimation(.easeInOut) {
@@ -73,7 +74,7 @@ struct MovieListCard: View {
                                 .foregroundStyle(.red)
                         } else {
                             Image(systemName: "heart")
-                                .foregroundStyle(.black)
+                                .foregroundStyle(.iconPrimary)
                         }
                     }.frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(8)
