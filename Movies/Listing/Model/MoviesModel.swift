@@ -25,6 +25,7 @@ struct MoviesModel: Codable {
     let imdbRating: String
     let imdbID: String
     let response: String
+    let type: String
 
     enum CodingKeys: String, CodingKey {
         case title = "Title"
@@ -44,6 +45,7 @@ struct MoviesModel: Codable {
         case imdbRating
         case imdbID
         case response = "Response"
+        case type = "Type"
     }
 }
 

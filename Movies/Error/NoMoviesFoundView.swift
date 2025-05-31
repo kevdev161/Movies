@@ -24,16 +24,16 @@ struct NoMoviesFoundView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
-                .foregroundColor(.gray)
+                .foregroundStyle(.gray)
 
             Text(errorTitle)
                 .font(.title2)
                 .fontWeight(.semibold)
-                .foregroundColor(.black)
+                .foregroundStyle(.black)
 
             Text(errorDescription)
                 .font(.body)
-                .foregroundColor(.gray)
+                .foregroundStyle(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
 
@@ -43,8 +43,8 @@ struct NoMoviesFoundView: View {
                         .fontWeight(.bold)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.gray.opacity(0.2))
-                        .foregroundColor(.white)
+                        .background(Color.black)
+                        .foregroundStyle(.white)
                         .cornerRadius(8)
                 }
                 .padding(.horizontal, 32)

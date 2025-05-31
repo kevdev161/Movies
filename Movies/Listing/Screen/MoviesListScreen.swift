@@ -17,6 +17,7 @@ struct MoviesListScreen: View {
                 HStack {
                     Text("Movies")
                         .font(.title)
+                        .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     NavigationLink {
                         FavoritesScreen()
@@ -25,7 +26,7 @@ struct MoviesListScreen: View {
                         Image(systemName: "heart.fill")
                             .resizable()
                             .frame(width: 24, height: 24)
-                            .foregroundColor(.red)
+                            .foregroundStyle(.red)
                     }
                 }
                 TextField("Search movies...", text: $viewModel.searchText)
@@ -38,6 +39,7 @@ struct MoviesListScreen: View {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Popular movies")
                                 .font(.title3)
+                                .fontWeight(.semibold)
                             ForEach(viewModel.popularMovies.indices, id: \.self) { index in
                                 let movie = viewModel.popularMovies[index]
                                 MovieListCard(movie: movie)
