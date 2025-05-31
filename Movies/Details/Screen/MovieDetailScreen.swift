@@ -52,18 +52,19 @@ struct MovieDetailScreen: View {
                                     Text("Remove from favorites")
                                         .font(.headline)
                                         .fontWeight(.semibold)
-                                        .foregroundStyle(.black)
+                                        .foregroundStyle(.textPrimary)
                                 } else {
                                     Image(systemName: "heart")
-                                        .foregroundStyle(.black)
+                                        .foregroundStyle(.iconPrimary)
                                     Text("Add to favorites")
                                         .font(.headline)
                                         .fontWeight(.semibold)
-                                        .foregroundStyle(.black)
+                                        .foregroundStyle(.textPrimary)
                                 }
 
                             }.padding()
                                 .frame(maxWidth: .infinity)
+                                .background(.backgroundSecondary)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }.overlay {
                             RoundedRectangle(cornerRadius: 8)
@@ -73,7 +74,7 @@ struct MovieDetailScreen: View {
                             Text(movie.title)
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(.textPrimary)
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack(spacing: 8) {
                                     HStack(spacing: 2) {
@@ -81,37 +82,38 @@ struct MovieDetailScreen: View {
                                             .foregroundStyle(.yellow)
                                         Text(movie.imdbRating)
                                             .font(.subheadline)
-                                            .foregroundStyle(.black)
+                                            .fontWeight(.semibold)
+                                            .foregroundStyle(.textPrimary)
                                     }
                                     HStack(spacing: 2) {
                                         Image(systemName: "calendar")
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(.iconSecondary)
                                         Text(movie.year)
                                             .font(.subheadline)
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(.textSecondary)
                                     }
                                     HStack(spacing: 2) {
                                         Image(systemName: "timer")
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(.iconSecondary)
                                         Text(movie.runtime)
                                             .font(.subheadline)
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(.textSecondary)
                                     }
                                 }
                                 HStack(spacing: 8) {
                                     HStack(spacing: 2) {
                                         Image(systemName: "film")
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(.iconSecondary)
                                         Text(movie.genre)
                                             .font(.subheadline)
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(.textSecondary)
                                     }
                                     HStack(spacing: 2) {
                                         Image(systemName: "movieclapper")
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(.iconSecondary)
                                         Text(movie.type)
                                             .font(.subheadline)
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(.textSecondary)
                                     }
                                 }
                             }
@@ -148,13 +150,15 @@ private struct DetailWrapperView: View {
             Text(title)
                 .font(.title3)
                 .fontWeight(.semibold)
-                .foregroundStyle(.black)
+                .foregroundStyle(.textPrimary)
             Text(description)
                 .font(.subheadline)
-                .foregroundStyle(.black)
+                .foregroundStyle(.textPrimary)
                 .multilineTextAlignment(.leading)
         }.padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.backgroundSecondary)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
             .overlay {
                 RoundedRectangle(cornerRadius: 8)
                     .strokeBorder(Color.gray, lineWidth: 0.5)
