@@ -17,12 +17,12 @@ class FavoritesManager: ObservableObject {
     }
 
     func isFavorite(_ movie: MovieSearchResult) -> Bool {
-        favorites.contains(movie)
+        favorites.contains(where: { $0.imdbID == movie.imdbID })
     }
 
     func toggleFavorite(_ movie: MovieSearchResult) {
-        if favorites.contains(movie) {
-            favorites.remove(movie)
+        if let existing = favorites.first(where: { $0.imdbID == movie.imdbID }) {
+            favorites.remove(existing)
         } else {
             favorites.insert(movie)
         }
