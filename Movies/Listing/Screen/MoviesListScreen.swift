@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MoviesListView: View {
+struct MoviesListScreen: View {
     @StateObject private var viewModel = MovieListViewModel()
     @StateObject private var favoritesManager = FavoritesManager()
 
