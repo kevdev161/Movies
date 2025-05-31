@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MovieListCard: View {
     let movie: MovieSearchResult
+    @EnvironmentObject var favoritesManager: FavoritesManager
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
             AsyncImage(url: URL(string: movie.poster)) { phase in
@@ -54,6 +55,21 @@ struct MovieListCard: View {
                 RoundedRectangle(cornerRadius: 8)
                     .strokeBorder(Color.gray, lineWidth: 0.5)
             }
-            .padding(.horizontal, 20)
+            .overlay(alignment: .top) {
+                Button {
+                    withAnimation(.easeInOut) {
+                        favoritesManager.toggleFavorite(movie)
+                    }
+                } label: {
+                    if favoritesManager.isFavorite(movie) {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.red)
+                    } else {
+                        Image(systemName: "heart")
+                            .foregroundColor(.black)
+                    }
+                }.frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(8)
+            }
     }
 }

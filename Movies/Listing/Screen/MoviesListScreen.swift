@@ -14,6 +14,20 @@ struct MoviesListScreen: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
+                HStack {
+                    Text("Movies")
+                        .font(.title)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    NavigationLink {
+                        FavoritesScreen()
+                            .environmentObject(favoritesManager)
+                    } label: {
+                        Image(systemName: "heart.fill")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.red)
+                    }
+                }
                 TextField("Search movies...", text: $viewModel.searchText)
                     .padding(10)
                     .background(Color(.systemGray6))
