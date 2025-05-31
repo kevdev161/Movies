@@ -74,7 +74,6 @@ class MovieListViewModel: ObservableObject {
 
     /// Fetches popular movies (placeholder, as OMDB doesn’t officially support popularity).
     func fetchPopularMovies() {
-        guard !isLoading, hasMorePages, !searchText.isEmpty else { return }
         isLoading = true
 
         let urlString = "https://www.omdbapi.com/?apikey=\(apiKey)&s=popular"

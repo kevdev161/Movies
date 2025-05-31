@@ -33,7 +33,19 @@ struct MoviesListScreen: View {
                     .background(Color(.systemGray6))
                     .cornerRadius(8)
                     .disableAutocorrection(true)
-                if !viewModel.isLoading, viewModel.movies.isEmpty, !viewModel.searchText.isEmpty {
+                if viewModel.searchText.isEmpty, !viewModel.isLoading, !viewModel.popularMovies.isEmpty {
+                    ScrollView(showsIndicators: false) {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Popular movies")
+                                .font(.title3)
+                            ForEach(viewModel.popularMovies.indices, id: \.self) { index in
+                                let movie = viewModel.popularMovies[index]
+                                MovieListCard(movie: movie)
+                            }
+                        }.padding(.vertical, 16)
+                        .environmentObject(favoritesManager)
+                    }
+                } else if !viewModel.isLoading, viewModel.movies.isEmpty, !viewModel.searchText.isEmpty {
                     NoMoviesFoundView(searchText: viewModel.searchText) {
                         viewModel.resetSearch()
                     }.frame(maxHeight: .infinity)
@@ -53,7 +65,8 @@ struct MoviesListScreen: View {
                                 ProgressView()
                                     .frame(maxWidth: .infinity, alignment: .center)
                             }
-                        }.environmentObject(favoritesManager)
+                        }.padding(.vertical, 16)
+                        .environmentObject(favoritesManager)
                     }
                 }
             }.padding(.horizontal, 20)
