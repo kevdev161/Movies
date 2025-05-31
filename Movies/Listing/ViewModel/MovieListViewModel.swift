@@ -5,19 +5,36 @@
 //  Created by Kevin M Jeggy on 31/05/25.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class MovieListViewModel: ObservableObject {
+    // MARK: - Published Properties
     @Published var movies: [MovieSearchResult] = []
+    @Published var popularMovies: [MovieSearchResult] = []
     @Published var currentPage = 1
     @Published var totalResults = 0
     @Published var isLoading = false
     @Published var hasMorePages = true
-    @Published var searchText = "" 
+    @Published var searchText = "" {
+        didSet {
+            if searchText.count > 2 {
+                resetSearch()
+            }
+        }
+    }
 
+    // MARK: - Private Properties
     private let apiKey = "9893379e"
 
+    // MARK: - Initialization
+    init() {
+        fetchPopularMovies()
+    }
+
+    // MARK: - API Calls
+
+    /// Fetches movies based on the search text and appends them to the `movies` array.
     func fetchMovies() {
         guard !isLoading, hasMorePages, !searchText.isEmpty else { return }
         isLoading = true
@@ -29,7 +46,7 @@ class MovieListViewModel: ObservableObject {
             return
         }
 
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             DispatchQueue.main.async {
                 self?.isLoading = false
             }
@@ -55,6 +72,39 @@ class MovieListViewModel: ObservableObject {
         }.resume()
     }
 
+    /// Fetches popular movies (placeholder, as OMDB doesn’t officially support popularity).
+    func fetchPopularMovies() {
+        guard !isLoading, hasMorePages, !searchText.isEmpty else { return }
+        isLoading = true
+
+        let urlString = "https://www.omdbapi.com/?apikey=\(apiKey)&s=popular"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            isLoading = false
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            DispatchQueue.main.async {
+                self?.isLoading = false
+            }
+
+            if let data = data {
+                do {
+                    let response = try JSONDecoder().decode(SearchResponse.self, from: data)
+                    DispatchQueue.main.async {
+                        self?.popularMovies.append(contentsOf: response.search)
+                    }
+                } catch {
+                    print("Decoding error: \(error)")
+                }
+            }
+        }.resume()
+    }
+
+    // MARK: - Helpers
+
+    /// Resets the search and starts fetching movies from page 1.
     func resetSearch() {
         movies = []
         currentPage = 1
