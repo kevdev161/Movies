@@ -13,11 +13,12 @@ class MovieDetailViewModel: ObservableObject {
     @Published var movie: MoviesModel?
 
     // MARK: - Private Properties
-
     private let apiKey = "9893379e"
+    private var urlSession: URLSessionProtocol
 
-    init(_ movie: MovieSearchResult) {
-        result = movie
+    init(_ movie: MovieSearchResult, urlSession: any URLSessionProtocol = URLSession.shared) {
+        self.result = movie
+        self.urlSession = urlSession
         fetchDetails()
     }
 
@@ -31,7 +32,7 @@ class MovieDetailViewModel: ObservableObject {
             return
         }
 
-        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+        self.urlSession.dataTask(with: url) { [weak self] data, _, error in
             DispatchQueue.main.async {
                 self?.isLoading = false
             }

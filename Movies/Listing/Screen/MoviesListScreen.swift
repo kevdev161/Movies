@@ -31,6 +31,7 @@ struct MoviesListScreen: View {
                     }
                 }
                 TextField("Search movies...", text: $viewModel.searchText)
+                    .accessibilityIdentifier("movieSearchField")
                     .padding(10)
                     .background(Color(.systemGray6))
                     .cornerRadius(8)
