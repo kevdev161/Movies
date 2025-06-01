@@ -13,6 +13,7 @@
 * Remove movies from the "Favorites" list.
 * Persistent storage of favorites using `UserDefaults`.
 * Infinite scrolling/pagination for search results.
+* Dark Mode support for improved readability in low-light environments.
 * User-friendly interface built with SwiftUI.
 * Handles API errors and displays informative messages to the user (e.g., "No movies found," "Too many results").
 * Popular movies.(As the API doesnt provide it, it is shown with keyword popular.) 
