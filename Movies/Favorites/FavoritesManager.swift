@@ -11,8 +11,9 @@ class FavoritesManager: ObservableObject {
     @Published private(set) var favorites: Set<MovieSearchResult> = []
 
     private let favoritesKey = "favoriteMovies"
-
-    init() {
+    private let userDefaults: UserDefaults
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
         loadFavorites()
     }
 

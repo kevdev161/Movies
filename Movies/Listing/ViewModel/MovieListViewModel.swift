@@ -10,6 +10,7 @@ import Foundation
 
 class MovieListViewModel: ObservableObject {
     // MARK: - Published Properties
+
     @Published var movies: [MovieSearchResult] = []
     @Published var popularMovies: [MovieSearchResult] = []
     @Published var currentPage = 1
@@ -25,10 +26,14 @@ class MovieListViewModel: ObservableObject {
     }
 
     // MARK: - Private Properties
+
     private let apiKey = "9893379e"
+    private var urlSession: URLSessionProtocol
 
     // MARK: - Initialization
-    init() {
+
+    init(urlSession: URLSessionProtocol = URLSession.shared) {
+        self.urlSession = urlSession
         fetchPopularMovies()
     }
 
@@ -46,7 +51,7 @@ class MovieListViewModel: ObservableObject {
             return
         }
 
-        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+        self.urlSession.dataTask(with: url) { [weak self] data, _, error in
             DispatchQueue.main.async {
                 self?.isLoading = false
             }
@@ -83,7 +88,7 @@ class MovieListViewModel: ObservableObject {
             return
         }
 
-        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+        self.urlSession.dataTask(with: url) { [weak self] data, _, error in
             DispatchQueue.main.async {
                 self?.isLoading = false
             }

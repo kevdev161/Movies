@@ -41,6 +41,7 @@ struct MovieListCard: View {
                         .foregroundStyle(.textPrimary)
                         .lineLimit(1)
                         .multilineTextAlignment(.leading)
+                        .accessibilityIdentifier("movieTitle_\(movie.imdbID)")
                     Text(movie.year)
                         .font(.subheadline)
                         .foregroundStyle(.textPrimary)
@@ -76,7 +77,8 @@ struct MovieListCard: View {
                             Image(systemName: "heart")
                                 .foregroundStyle(.iconPrimary)
                         }
-                    }.frame(maxWidth: .infinity, alignment: .trailing)
+                    }.accessibilityIdentifier("favoriteButton_\(movie.imdbID)")
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(8)
                 }
         }
