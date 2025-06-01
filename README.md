@@ -19,9 +19,18 @@
 * Popular movies.(As the API doesnt provide it, it is shown with keyword popular.) 
 
 Main movie listing screen.
+![image](https://github.com/user-attachments/assets/970f3441-5bb3-40ce-a4a9-07ed0c173ac1)
+
 Search results screen.
+![image](https://github.com/user-attachments/assets/bea663c9-22e1-413a-86a2-e7a3c1b56b63)
+
 Movie detail screen.
+![image](https://github.com/user-attachments/assets/cee1b185-ec5a-499b-a841-f0bbc0bb28bc)
+![image](https://github.com/user-attachments/assets/13904c64-d067-458f-8b32-a422a995b573)
+
 Example: Favorites screen.
+![image](https://github.com/user-attachments/assets/3159dffb-2df3-4a19-b194-6cc2064d44cb)
+
 
 ## Tech Stack & Tools
 
